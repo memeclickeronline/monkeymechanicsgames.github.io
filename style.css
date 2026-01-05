@@ -48,10 +48,10 @@ body {
 }
 
 /* ===== Aura Score Box with Sparks ===== */
-#score.topRight {
-  position: absolute;
+#score.topRight {  /* you can keep the class name as topRight or rename it */
+  position: absolute;   /* top-left corner */
   top: 20px;
-  right: 20px;
+  left: 20px;           /* changed from right to left */
   font-size: 2em;
   color: #00ccff;
   font-family: 'Luckiest Guy', cursive;
@@ -63,21 +63,16 @@ body {
   text-shadow: 0 0 8px #00ccff, 0 0 15px #00ffff;
   z-index: 10;
   animation: electricGlow 1s infinite alternate;
-  overflow: visible; /* allows sparks to appear outside box */
-  position: relative;
+  overflow: visible; /* allows sparks outside box */
 }
 
-/* Electric glow animation */
+/* Glowing animation */
 @keyframes electricGlow {
-  0% {
-    box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff inset;
-  }
-  100% {
-    box-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff inset;
-  }
+  0% { box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff inset; }
+  100% { box-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff inset; }
 }
 
-/* ===== Sparks around box ===== */
+/* Sparks around the box */
 #score.topRight::before,
 #score.topRight::after {
   content: '';
@@ -90,22 +85,16 @@ body {
   animation: sparkMove 0.8s infinite alternate;
 }
 
-#score.topRight::before {
-  top: -10px;
-  left: 10%;
-}
-
-#score.topRight::after {
-  bottom: -10px;
-  right: 15%;
-}
+#score.topRight::before { top: -10px; left: 10%; }
+#score.topRight::after  { bottom: -10px; right: 15%; }
 
 /* Sparks movement */
 @keyframes sparkMove {
-  0% { transform: translate(0, 0) scale(1); opacity: 1; }
-  50% { transform: translate(5px, -5px) scale(1.3); opacity: 0.7; }
-  100% { transform: translate(-5px, 5px) scale(1); opacity: 1; }
+  0%   { transform: translate(0,0) scale(1); opacity:1; }
+  50%  { transform: translate(5px,-5px) scale(1.3); opacity:0.7; }
+  100% { transform: translate(-5px,5px) scale(1); opacity:1; }
 }
+
 
 
 
