@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><div id="titleContainer">
-  <span class="titleLine yellow">Meme</span>
-  <span class="titleLine green">Clicker</span>
-</div>
-
-
+  <meta charset="UTF-8">
+  <title>Meme Clicker</title>
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+  <!-- Title -->
+  <div id="titleContainer">
+    <span class="yellow">Meme</span>
+    <span class="green">Clicker</span>
+  </div>
+
+  <!-- Score -->
   <div id="score">Aura: 0</div>
 
+  <!-- Game container -->
   <div id="gameContainer">
     <!-- Big Meme Click Button -->
     <button id="clickBtn">
@@ -29,7 +36,7 @@
         <span>Cost: <span id="boomerCost">2</span> Aura</span>
       </div>
       <div class="upgrade">
-        <button id="genZBtn">Gen Z</button>
+        <button id="genZBtn">Gen Z Nerd</button>
         <span>Cost: <span id="genZCost">3</span> Aura</span>
       </div>
     </div>
@@ -38,4 +45,3 @@
   <script src="game.js"></script>
 </body>
 </html>
-
