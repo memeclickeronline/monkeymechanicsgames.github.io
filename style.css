@@ -1,3 +1,4 @@
+/* General body */
 body {
   font-family: 'Luckiest Guy', cursive, sans-serif;
   background: #fef200;
@@ -6,13 +7,25 @@ body {
   padding: 0;
 }
 
+/* Title */
+#titleContainer {
+  font-size: 80px;
+  margin-top: 40px;
+  line-height: 1.5;
+  text-shadow: 2px 2px #000;
+}
+
+.yellow { color: #ffea00; display: block; }
+.green { color: #00ff00; display: block; }
+
+/* Score */
 #score {
-  font-family: 'Luckiest Guy', cursive, sans-serif;
   font-size: 2em;
   color: #00ccff;
   text-shadow: 1px 1px #000;
 }
 
+/* Game container */
 #gameContainer {
   display: flex;
   justify-content: center;
@@ -21,6 +34,7 @@ body {
   margin-top: 20px;
 }
 
+/* Click button */
 #clickBtn {
   border: none;
   background: none;
@@ -37,6 +51,7 @@ body {
   transform: scale(0.95);
 }
 
+/* Shop */
 #shop {
   text-align: left;
   background: #fff;
