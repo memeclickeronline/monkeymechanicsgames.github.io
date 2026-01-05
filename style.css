@@ -73,8 +73,8 @@ body {
 }
 
 /* Sparks around the box */
-#score.topRight::before,
-#score.topRight::after {
+#score.topLeft::before,
+#score.topLeft::after {
   content: '';
   position: absolute;
   width: 6px;
@@ -85,8 +85,8 @@ body {
   animation: sparkMove 0.8s infinite alternate;
 }
 
-#score.topRight::before { top: -10px; left: 10%; }
-#score.topRight::after  { bottom: -10px; right: 15%; }
+#score.topLeft::before { top: -10px; left: 10%; }
+#score.topLeft::after  { bottom: -10px; right: 15%; }
 
 /* Sparks movement */
 @keyframes sparkMove {
