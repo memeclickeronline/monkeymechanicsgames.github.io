@@ -1,1 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meme Clicker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1 id="title">Meme Clicker</h1>
+  <div id="score">Aura: 0</div>
+
+  <div id="gameContainer">
+    <!-- Big Meme Click Button -->
+    <button id="clickBtn">
+      <img id="memeImg" src="https://i.imgur.com/6bK4W0y.png" alt="Big Meme">
+    </button>
+
+    <!-- Shop / Upgrades -->
+    <div id="shop">
+      <h2>Upgrades</h2>
+      <div class="upgrade">
+        <button id="sevenBtn">7-Year-Old</button>
+        <span>Cost: <span id="sevenCost">1</span> Aura</span>
+      </div>
+      <div class="upgrade">
+        <button id="boomerBtn">Cool Boomer</button>
+        <span>Cost: <span id="boomerCost">2</span> Aura</span>
+      </div>
+      <div class="upgrade">
+        <button id="genZBtn">Gen Z</button>
+        <span>Cost: <span id="genZCost">3</span> Aura</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
 
