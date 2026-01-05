@@ -134,14 +134,16 @@ body {
 /* Upgrade box scrollable if too tall */
 #shop {
   text-align: left;
-  background: #fff;
+  background: linear-gradient(135deg, #4da6ff, #1a75ff); /* nice blue gradient */
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 3px 3px #aaa;
-  width: 280px;      /* fixed width to keep layout neat */
-  max-height: 70vh;  /* allows scrolling if too many upgrades */
-  overflow-y: auto;
+  box-shadow: 3px 3px #000;  /* darker shadow for contrast */
+  width: 280px;              
+  max-height: 70vh;          
+  overflow-y: auto;          /* scroll if too tall */
+  color: #fff;               /* white text by default */
 }
+
 
 /* Upgrade header: name + cost inline */
 .upgradeHeader {
