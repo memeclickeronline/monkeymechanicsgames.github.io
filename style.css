@@ -228,5 +228,14 @@ body {
   font-style: italic;
   color: #444;
 }
+#shopTitle {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 2em;        /* bigger than upgrade text */
+  margin-bottom: 20px;   
+  text-align: center;
+  color: #ffff00;        /* bright yellow for contrast */
+  text-shadow: 2px 2px #000; 
+}
+
 
 
