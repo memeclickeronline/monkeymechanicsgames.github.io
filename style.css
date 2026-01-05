@@ -1,0 +1,73 @@
+body {
+  background: #fef200; /* bright yellow meme vibe */
+  text-align: center;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#title {
+  font-size: 3em;
+  color: #00ff00; /* green bubbly font */
+  margin-top: 20px;
+  text-shadow: 2px 2px #000;
+}
+
+#score {
+  font-size: 2em;
+  margin: 10px 0;
+  color: #00ccff;
+  text-shadow: 1px 1px #000;
+}
+
+#gameContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+#clickBtn {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+#memeImg {
+  width: 250px;
+  height: 250px;
+  transition: transform 0.1s;
+}
+
+#memeImg:active {
+  transform: scale(0.95);
+}
+
+#shop {
+  text-align: left;
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 3px 3px #aaa;
+}
+
+.upgrade {
+  margin-bottom: 15px;
+  font-size: 1.2em;
+}
+
+.upgrade button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #ffcc00;
+  border: 2px solid #000;
+  border-radius: 8px;
+  transition: transform 0.1s;
+}
+
+.upgrade button:active {
+  transform: scale(0.95);
+}
