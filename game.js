@@ -1,101 +1,98 @@
-// ===== Aura & Score =====
+// ===== Aura =====
 let aura = 0;
 const scoreEl = document.getElementById("score");
 
-// ===== Upgrade variables =====
+// ===== Upgrade counts =====
 let sevenCount = 0;
 let boomerCount = 0;
 let genZCount = 0;
 
+// ===== Costs =====
 let sevenCost = 1;
 let boomerCost = 2;
 let genZCost = 3;
 
-// ===== DOM Elements =====
+// ===== Buttons =====
+const clickBtn = document.getElementById("clickBtn");
 const sevenBtn = document.getElementById("sevenBtn");
 const boomerBtn = document.getElementById("boomerBtn");
 const genZBtn = document.getElementById("genZBtn");
+
+// ===== UI =====
 const sevenCostEl = document.getElementById("sevenCost");
 const boomerCostEl = document.getElementById("boomerCost");
 const genZCostEl = document.getElementById("genZCost");
-const clickBtn = document.getElementById("clickBtn");
 
 const sevenOwnedEl = document.getElementById("sevenOwned");
 const boomerOwnedEl = document.getElementById("boomerOwned");
 const genZOwnedEl = document.getElementById("genZOwned");
 
-
-// ===== Click cooldown =====
-let lastClickTime = 0;
-const clickCooldown = 300;
-
+// ===== Click Meme =====
 clickBtn.addEventListener("click", () => {
-  const now = Date.now();
-  if (now - lastClickTime >= clickCooldown) {
-    aura += 1;
+  aura++;
+  updateScore();
+});
+
+// ===== Buy upgrades =====
+sevenBtn.addEventListener("click", () => {
+  if (aura >= sevenCost) {
+    aura -= sevenCost;
+    sevenCount++;
+    sevenCost = Math.ceil(sevenCost * 1.25);
+
+    sevenOwnedEl.textContent = sevenCount;
+    sevenCostEl.textContent = sevenCost;
     updateScore();
-    lastClickTime = now;
   }
 });
 
-// ===== Upgrade purchase =====
-function buyUpgrade(type) {
-  if (type === "seven" && aura >= sevenCost) {
-    aura -= sevenCost;
-    sevenCount++;
-    sevenOwnedEl.textContent = sevenCount;
-
-    sevenCost = Math.ceil(sevenCost * 1.25);
-    sevenCostEl.textContent = sevenCost;
-  } else if (type === "boomer" && aura >= boomerCost) {
+boomerBtn.addEventListener("click", () => {
+  if (aura >= boomerCost) {
     aura -= boomerCost;
     boomerCount++;
-    boomerOwnedEl.textContent = boomerCount;
-
     boomerCost = Math.ceil(boomerCost * 1.25);
+
+    boomerOwnedEl.textContent = boomerCount;
     boomerCostEl.textContent = boomerCost;
-  } else if (type === "genZ" && aura >= genZCost) {
+    updateScore();
+  }
+});
+
+genZBtn.addEventListener("click", () => {
+  if (aura >= genZCost) {
     aura -= genZCost;
     genZCount++;
-    genZOwnedEl.textContent = genZCount;
-
     genZCost = Math.ceil(genZCost * 1.25);
+
+    genZOwnedEl.textContent = genZCount;
     genZCostEl.textContent = genZCost;
+    updateScore();
   }
-  updateScore();
-}
+});
 
-sevenBtn.addEventListener("click", () => buyUpgrade("seven"));
-boomerBtn.addEventListener("click", () => buyUpgrade("boomer"));
-genZBtn.addEventListener("click", () => buyUpgrade("genZ"));
-
-// ===== Auto clickers =====
-// 7-Year-Old every 5s
+// ===== Auto income =====
 setInterval(() => {
   aura += sevenCount;
   updateScore();
 }, 5000);
 
-// Cool Boomer every 3s
 setInterval(() => {
   aura += boomerCount;
   updateScore();
 }, 3000);
 
-// Gen Z Nerd every 5s, 50/50 positive/negative
 setInterval(() => {
   for (let i = 0; i < genZCount; i++) {
     if (Math.random() < 0.5) {
       aura += 5;
     } else {
-      aura -= 5;
-      if (aura < 0) aura = 0;
+      aura = Math.max(0, aura - 5);
     }
   }
   updateScore();
 }, 5000);
 
-// ===== Update score display =====
+// ===== Update UI =====
 function updateScore() {
   scoreEl.textContent = "Aura: " + aura;
 }
