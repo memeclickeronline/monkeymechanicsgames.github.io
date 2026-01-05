@@ -6,7 +6,18 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1 id="title">Meme Clicker</h1>
+  <!-- Curved Title -->
+<svg width="600" height="150">
+  <defs>
+    <path id="curve" d="M 50 100 C 150 0, 450 0, 550 100" />
+  </defs>
+  <text font-family="Luckiest Guy" font-size="50" fill="#00ff00" stroke="#000" stroke-width="2">
+    <textPath href="#curve" text-anchor="middle" startOffset="50%">
+      Meme Clicker
+    </textPath>
+  </text>
+</svg>
+
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
 
   <div id="score">Aura: 0</div>
