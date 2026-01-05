@@ -51,30 +51,49 @@ body {
   transform: scale(0.95);
 }
 
-/* Shop */
 #shop {
   text-align: left;
-  background: #fff;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 3px 3px #aaa;
+  background: linear-gradient(135deg, #fff200, #ffea00);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+  border: 3px solid #000;
+  width: 250px;
+  font-family: 'Luckiest Guy', cursive;
 }
+
 
 .upgrade {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   font-size: 1.2em;
+  background: rgba(255,255,255,0.3);
+  padding: 8px;
+  border-radius: 10px;
+  border: 2px solid #000;
 }
 
+
 .upgrade button {
-  padding: 10px 15px;
+  padding: 10px 20px;
   margin-right: 10px;
   font-size: 1em;
   cursor: pointer;
-  background-color: #ffcc00;
+  background-color: #ff9900;
   border: 2px solid #000;
-  border-radius: 8px;
-  transition: transform 0.1s;
+  border-radius: 12px;
+  font-family: 'Luckiest Guy', cursive;
+  transition: transform 0.1s, background-color 0.2s;
 }
+
+.upgrade button:hover {
+  background-color: #ffd500;
+}
+
+.upgrade button:active {
+  transform: scale(0.95);
+  background-color: #ffcc00;
+}
+
 
 .upgrade button:active {
   transform: scale(0.95);
