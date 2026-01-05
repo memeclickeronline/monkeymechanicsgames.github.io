@@ -54,13 +54,18 @@ body {
 #shop {
   text-align: left;
   background: linear-gradient(135deg, #fff200, #ffea00);
-  padding: 25px;
+  padding: 20px;
   border-radius: 20px;
   box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
   border: 3px solid #000;
-  width: 250px;
+  width: 220px;                  /* smaller width */
+  max-height: 80vh;              /* limit height to 80% of viewport */
+  overflow-y: auto;              /* scroll if content exceeds max-height */
   font-family: 'Luckiest Guy', cursive;
+  position: sticky;              /* stays visible if scrolling */
+  top: 20px;                     /* distance from top */
 }
+
 
 
 .upgrade {
