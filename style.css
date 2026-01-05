@@ -25,13 +25,13 @@ body {
   text-shadow: 1px 1px #000;
 }
 
-/* Game container */
 #gameContainer {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;  /* align to left instead of center */
   align-items: flex-start;
   gap: 50px;
   margin-top: 20px;
+  padding: 20px;                 /* add padding so scroll works nicely */
 }
 
 /* Click button */
