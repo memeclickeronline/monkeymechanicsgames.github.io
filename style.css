@@ -5,24 +5,25 @@ body {
   margin: 0;
   padding: 0;
 }
-
 #titleContainer {
   font-family: 'Luckiest Guy', cursive, sans-serif;
-  font-size: 80px;         /* big bold title */
+  font-size: 80px;
   text-align: center;
-  margin-top: 40px;        /* lowers title from top of page */
-  line-height: 1.2;        /* increases spacing between lines */
-  text-shadow: 2px 2px #000; /* black outline for pop */
+  margin-top: 40px;   /* move title lower */
+  line-height: 1.5;    /* space between the two words */
+  text-shadow: 2px 2px #000;  /* black outline */
 }
 
 #memeWord {
-  color: #ffea00; /* yellow */
-  display: block;  /* ensures it stays on its own line */
+  color: #ffea00;   /* yellow */
+  display: block;
 }
 
 #clickerWord {
-  color: #00ff00; /* green */
-  display: block;  /* ensures it stays on its own line */
+  color: #00ff00;   /* green */
+  display: block;
+}
+
 }
 
 
