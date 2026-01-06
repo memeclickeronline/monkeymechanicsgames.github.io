@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   font-family: 'Luckiest Guy', cursive;
@@ -18,13 +19,37 @@ body {
   font-size: 1.5em;
 }
 
+#titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
 #title {
-  font-size: 80px;
-  margin: 60px 0 30px;
+  font-size: 100px; /* 25% bigger */
   text-shadow: 3px 3px #000;
 }
 .blue { color: #66ccff; display: block; }
 .green { color: #00ff00; display: block; margin-top: -15px; }
+
+#meContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#meBtn {
+  font-size: 2em;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  background-color: #a0ff99;
+  cursor: pointer;
+}
+
+#meContainer small { font-size: 0.8em; }
 
 #container {
   display: flex;
@@ -39,7 +64,6 @@ body {
   cursor: pointer;
   transition: transform 0.1s;
 }
-
 #game img:active { transform: scale(0.95); }
 
 #shop {
@@ -60,7 +84,6 @@ body {
   justify-content: space-around;
   margin-bottom: 15px;
 }
-
 #shopTabs .tab {
   flex: 1;
   padding: 10px 0;
@@ -99,74 +122,43 @@ body {
 }
 .card p { margin: 5px 0; }
 .card small { font-style: italic; }
-
-.bcImage {
-  width: 100%;
-  border-radius: 8px;
-  margin-top: 5px;
-}
-/* ME Button */
-#meContainer {
-  display: inline-block;
-  position: relative;
-  margin-left: 20px;
-  vertical-align: top;
-  text-align: center;
-}
-
-#meBtn {
-  font-size: 24px;
-  background: #a0ff99;
-  border: 2px solid #000;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-}
-
-#meContainer small {
-  display: block;
-  font-size: 10px;
-  margin-top: 2px;
-}
+.bcImage { width: 100%; border-radius: 8px; margin-top: 5px; }
 
 /* ME Popup */
 #mePopup {
-  display: none; /* hidden by default */
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
+  width: 450px;
   max-width: 90%;
   background: #fff;
   border: 2px solid #000;
   border-radius: 12px;
   box-shadow: 5px 5px #000;
-  z-index: 100;
+  z-index: 1000;
 }
 
 #meHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #66ccff;
-  padding: 10px;
-  border-bottom: 2px solid #000;
-  border-radius: 10px 10px 0 0;
+  background: #a0ff99;
+  padding: 15px;
+  font-size: 1.25em;
   font-weight: bold;
+  border-bottom: 2px solid #000;
+  border-radius: 12px 12px 0 0;
 }
 
 #meCloseBtn {
   background: #ff6666;
   border: 2px solid #000;
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
 }
 
-#meContent {
-  padding: 20px;
-  text-align: left;
-}
+#meContent { padding: 20px; text-align: left; }
