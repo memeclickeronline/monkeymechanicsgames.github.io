@@ -101,7 +101,8 @@ function updateMEPopup(){
   let worth = 0;
   for(const key in upgrades){ worth += upgrades[key].count * upgrades[key].cost; }
   if(bcBought) worth += 10000;
-  document.getElementById("worthInfo").textContent = worth;
+  document.getElementById("worthInfo").textContent = Math.round((worth + aura)*100)/100;
+
 
   const aura5s = upgrades.seven.count + upgrades.boomer.count*(5/3) + upgrades.genZ.count*5 + upgrades.rizz.count*5 + upgrades.skibidi.count*10;
   document.getElementById("apsInfo").textContent = Math.round(aura5s*100)/100;
