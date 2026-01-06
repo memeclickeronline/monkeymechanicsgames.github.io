@@ -313,5 +313,39 @@ body {
   </div>
 
   <script src="game.js"></script>
+/* Screens */
+.screen { display: none; padding: 20px; }
+.screen.active { display: block; }
+
+/* Bottom navigation bar */
+#bottomBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background: #222;
+  color: #fff;
+  padding: 10px 0;
+  font-size: 1.5em;
+  box-shadow: 0 -2px 10px #000;
+  z-index: 1000;
+}
+#bottomBar .tabBtn {
+  cursor: pointer;
+  transition: 0.2s;
+  flex: 1;
+  text-align: center;
+}
+#bottomBar .tabBtn.active {
+  font-size: 1.8em;
+  color: #00ffff;
+}
+#bottomBar .tabBtn.locked {
+  opacity: 0.4;
+  cursor: default;
+}
+
 </body>
 </html>
