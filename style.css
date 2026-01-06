@@ -105,3 +105,68 @@ body {
   border-radius: 8px;
   margin-top: 5px;
 }
+/* ME Button */
+#meContainer {
+  display: inline-block;
+  position: relative;
+  margin-left: 20px;
+  vertical-align: top;
+  text-align: center;
+}
+
+#meBtn {
+  font-size: 24px;
+  background: #a0ff99;
+  border: 2px solid #000;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+#meContainer small {
+  display: block;
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+/* ME Popup */
+#mePopup {
+  display: none; /* hidden by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  max-width: 90%;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 12px;
+  box-shadow: 5px 5px #000;
+  z-index: 100;
+}
+
+#meHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #66ccff;
+  padding: 10px;
+  border-bottom: 2px solid #000;
+  border-radius: 10px 10px 0 0;
+  font-weight: bold;
+}
+
+#meCloseBtn {
+  background: #ff6666;
+  border: 2px solid #000;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+#meContent {
+  padding: 20px;
+  text-align: left;
+}
