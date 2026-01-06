@@ -1,76 +1,118 @@
+// ===== FIREBASE SETUP =====
+const firebaseConfig = {
+  apiKey: "AIzaSyCF3esrFmnrLo3czErYRy1wkbRqEZfHliY",
+  authDomain: "monkeymechanicsaccounts.firebaseapp.com",
+  projectId: "monkeymechanicsaccounts",
+  storageBucket: "monkeymechanicsaccounts.firebasestorage.app",
+  messagingSenderId: "210326823006",
+  appId: "1:210326823006:web:28d87c66a7d1c5a35594cf"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-let clickMultiplier = 1;
+// ===== UI ELEMENTS =====
+const scoreEl = document.getElementById('score');
+const clickBtn = document.getElementById('clickBtn');
+const meBtn = document.getElementById('meBtn');
+const mePopup = document.getElementById('mePopup');
+const meCloseBtn = document.getElementById('meCloseBtn');
+const loginBtn = document.getElementById('loginBtn');
+const logoutBtn = document.getElementById('logoutBtn');
+
+// ===== GAME VARIABLES =====
 let aura = 0;
+let clickMultiplier = 1;
+let bcBought = false;
 
-const score = document.getElementById("score");
+const upgrades = {
+  seven: { count: 0, cost: 1 },
+  boomer: { count: 0, cost: 2 },
+  genZ: { count: 0, cost: 3 },
+  rizz: { count: 0, cost: 50 },
+  skibidi: { count: 0, cost: 100 }
+};
 
+// ===== HELPER FUNCTIONS =====
 function updateScore() {
-  score.textContent = "Aura: " + Math.round(aura*100)/100;
+  scoreEl.textContent = "Aura: " + Math.round(aura * 100) / 100;
+  saveLocal();
 }
 
-// Click Button
-document.getElementById("clickBtn").addEventListener("click", () => {
+function saveLocal() {
+  localStorage.setItem('memeClickerProgress', JSON.stringify({ aura, clickMultiplier, upgrades, bcBought }));
+}
+
+function loadLocal() {
+  const p = localStorage.getItem('memeClickerProgress');
+  if (p) {
+    const data = JSON.parse(p);
+    aura = data.aura || 0;
+    clickMultiplier = data.clickMultiplier || 1;
+    bcBought = data.bcBought || false;
+    for (const key in upgrades) {
+      if (data.upgrades && data.upgrades[key]) upgrades[key] = data.upgrades[key];
+    }
+  }
+  updateScore();
+}
+loadLocal();
+
+// ===== CLICK BUTTON =====
+clickBtn.addEventListener('click', () => {
   aura += clickMultiplier;
   updateScore();
 });
 
-// Upgrades
-const upgrades = {
-  seven: { count:0, cost:1 },
-  boomer: { count:0, cost:2 },
-  genZ: { count:0, cost:3 },
-  rizz: { count:0, cost:50 },
-  skibidi: { count:0, cost:100 }
-};
-
-// Buy Function
+// ===== UPGRADE LOGIC =====
 function buyUpgrade(name) {
   const up = upgrades[name];
   if (aura >= up.cost) {
     aura -= up.cost;
     up.count++;
-    up.cost = Math.ceil(up.cost*1.25);
-    document.getElementById(name+"Cost").textContent = up.cost;
-    document.getElementById(name+"Owned").textContent = up.count;
+    up.cost = Math.ceil(up.cost * 1.25);
+    document.getElementById(name + "Cost").textContent = up.cost;
+    document.getElementById(name + "Owned").textContent = up.count;
     updateScore();
   }
 }
 
-// Buttons
 document.getElementById("sevenBtn").onclick = () => buyUpgrade("seven");
 document.getElementById("boomerBtn").onclick = () => buyUpgrade("boomer");
 document.getElementById("genZBtn").onclick = () => buyUpgrade("genZ");
 document.getElementById("rizzBtn").onclick = () => buyUpgrade("rizz");
 document.getElementById("skibidiBtn").onclick = () => buyUpgrade("skibidi");
 
-// Auto Income
-setInterval(()=>{ aura += upgrades.seven.count * clickMultiplier; updateScore(); }, 5000);
-setInterval(()=>{ aura += upgrades.boomer.count * clickMultiplier; updateScore(); }, 3000);
-setInterval(()=>{
-  for(let i=0;i<upgrades.genZ.count;i++){ aura += (Math.random()<0.5?5:-5)*clickMultiplier; if(aura<0)aura=0; }
+// ===== AUTO-INCOME =====
+setInterval(() => { aura += upgrades.seven.count * clickMultiplier; updateScore(); }, 5000);
+setInterval(() => { aura += upgrades.boomer.count * clickMultiplier; updateScore(); }, 3000);
+setInterval(() => {
+  for (let i = 0; i < upgrades.genZ.count; i++) {
+    aura += (Math.random() < 0.5 ? 5 : -5) * clickMultiplier;
+    if (aura < 0) aura = 0;
+  }
   updateScore();
-},5000);
-setInterval(()=>{ aura += upgrades.rizz.count * clickMultiplier; updateScore(); },1000);
-setInterval(()=>{ aura += upgrades.skibidi.count * 2 * clickMultiplier; updateScore(); },1000);
+}, 5000);
+setInterval(() => { aura += upgrades.rizz.count * clickMultiplier; updateScore(); }, 1000);
+setInterval(() => { aura += upgrades.skibidi.count * 2 * clickMultiplier; updateScore(); }, 1000);
 
-// Tabs
+// ===== SHOP TABS =====
 const tabs = document.querySelectorAll("#shopTabs .tab");
 const panels = document.querySelectorAll(".shopPanel");
 tabs.forEach(tab => {
-  tab.addEventListener("click", ()=>{
-    tabs.forEach(t=>t.classList.remove("active"));
-    panels.forEach(p=>p.classList.remove("active"));
+  tab.addEventListener("click", () => {
+    tabs.forEach(t => t.classList.remove("active"));
+    panels.forEach(p => p.classList.remove("active"));
     tab.classList.add("active");
     const panelId = tab.getAttribute("data-tab");
     document.getElementById(panelId).classList.add("active");
   });
 });
 
-// Bombardillo Crocodillo
-let bcBought = false;
+// ===== BOMBARDILLO CROCODILLO =====
 const bcBtn = document.getElementById("bcBtn");
-bcBtn.onclick = ()=>{
-  if(!bcBought && aura >= 10000){
+bcBtn.onclick = () => {
+  if (!bcBought && aura >= 10000) {
     aura -= 10000;
     bcBought = true;
     clickMultiplier = 1.1;
@@ -80,94 +122,67 @@ bcBtn.onclick = ()=>{
   }
 };
 
-// ME Popup
-const meBtn = document.getElementById("meBtn");
-const mePopup = document.getElementById("mePopup");
-const meCloseBtn = document.getElementById("meCloseBtn");
-
-meBtn.addEventListener("click", ()=>{
-  mePopup.style.display="block";
+// ===== ME POPUP =====
+meBtn.addEventListener('click', () => {
+  mePopup.style.display = "block";
   updateMEPopup();
 });
-meCloseBtn.addEventListener("click", ()=>{
-  mePopup.style.display="none";
-});
+meCloseBtn.addEventListener('click', () => mePopup.style.display = "none");
 
-function updateMEPopup(){
-  const totalItems = upgrades.seven.count + upgrades.boomer.count + upgrades.genZ.count + upgrades.rizz.count + upgrades.skibidi.count + (bcBought?1:0);
+function updateMEPopup() {
+  const totalItems = upgrades.seven.count + upgrades.boomer.count + upgrades.genZ.count + upgrades.rizz.count + upgrades.skibidi.count + (bcBought ? 1 : 0);
   const totalPossible = 6;
-  document.getElementById("progressInfo").textContent = Math.round(totalItems/totalPossible*100)+"%";
+  document.getElementById("progressInfo").textContent = Math.round(totalItems / totalPossible * 100) + "%";
 
   let worth = 0;
-  for(const key in upgrades){ worth += upgrades[key].count * upgrades[key].cost; }
-  if(bcBought) worth += 10000;
-  document.getElementById("worthInfo").textContent = Math.round((worth + aura)*100)/100;
+  for (const key in upgrades) { worth += upgrades[key].count * upgrades[key].cost; }
+  if (bcBought) worth += 10000;
+  document.getElementById("worthInfo").textContent = Math.round((worth + aura) * 100) / 100;
 
+  const aura5s = upgrades.seven.count + upgrades.boomer.count * (5 / 3) + upgrades.genZ.count * 5 + upgrades.rizz.count * 5 + upgrades.skibidi.count * 10;
+  document.getElementById("apsInfo").textContent = Math.round(aura5s * 100) / 100;
 
-  const aura5s = upgrades.seven.count + upgrades.boomer.count*(5/3) + upgrades.genZ.count*5 + upgrades.rizz.count*5 + upgrades.skibidi.count*10;
-  document.getElementById("apsInfo").textContent = Math.round(aura5s*100)/100;
-}
-// Save current progress to Firestore and localStorage
-async function saveProgress(user, progress) {
-  // Save locally
-  localStorage.setItem('memeClickerProgress', JSON.stringify(progress));
-
-  if (!user) return; // not logged in yet
-
-  // Save to Firestore under UID
-  await db.collection('users').doc(user.uid).set({
-    progress
-  }, { merge: true }); // merge keeps username intact
+  const user = auth.currentUser;
+  document.getElementById("accountInfo").textContent = user ? user.email : "-";
 }
 
-// Load progress for current session
-async function loadProgress(user) {
-  let progress = { score: 0, level: 1 }; // default
-
-  // Load from Firestore if logged in
-  if (user) {
-    const doc = await db.collection('users').doc(user.uid).get();
-    if (doc.exists && doc.data().progress) {
-      progress = doc.data().progress;
-    }
-  } else {
-    // Load from localStorage if not logged in
-    const local = localStorage.getItem('memeClickerProgress');
-    if (local) progress = JSON.parse(local);
-  }
-
-  return progress;
-}
-
-// When user logs in or signs up
-async function onUserLogin(user) {
+// ===== LOCAL + FIRESTORE SYNC =====
+async function syncProgress(user) {
   const local = localStorage.getItem('memeClickerProgress');
   const doc = await db.collection('users').doc(user.uid).get();
 
   if (doc.exists && doc.data().progress) {
-    // Account has progress → load it
-    localStorage.setItem('memeClickerProgress', JSON.stringify(doc.data().progress));
+    const data = doc.data().progress;
+    aura = data.aura || 0;
+    clickMultiplier = data.clickMultiplier || 1;
+    bcBought = data.bcBought || false;
+    for (const key in upgrades) { if (data.upgrades && data.upgrades[key]) upgrades[key] = data.upgrades[key]; }
   } else if (local) {
-    // No progress yet → use local progress and save it to Firestore
-    await db.collection('users').doc(user.uid).set({
-      progress: JSON.parse(local)
-    }, { merge: true });
+    await db.collection('users').doc(user.uid).set({ progress: JSON.parse(local) }, { merge: true });
   }
+  updateScore();
 }
-document.getElementById("loginBtn").onclick = () => {
-  window.location.href = "https://accounts.monkeymechanics.github.io";
-};
-document.getElementById("logoutBtn").onclick = async () => {
-  await firebase.auth().signOut();
+
+setInterval(async () => {
+  const user = auth.currentUser;
+  saveLocal();
+  if (user) await db.collection('users').doc(user.uid).set({ progress: { aura, clickMultiplier, upgrades, bcBought } }, { merge: true });
+}, 5000);
+
+// ===== LOGIN / LOGOUT BUTTONS =====
+loginBtn.onclick = () => window.location.href = "login.html";
+
+logoutBtn.onclick = async () => {
+  await auth.signOut();
   location.reload();
 };
-firebase.auth().onAuthStateChanged(user => {
+
+auth.onAuthStateChanged(user => {
   if (user) {
-    document.getElementById("loginBtn").style.display = "none";
-    document.getElementById("logoutBtn").style.display = "inline-block";
+    loginBtn.style.display = "none";
+    logoutBtn.style.display = "inline-block";
   } else {
-    document.getElementById("loginBtn").style.display = "inline-block";
-    document.getElementById("logoutBtn").style.display = "none";
+    loginBtn.style.display = "inline-block";
+    logoutBtn.style.display = "none";
   }
 });
-
