@@ -1,4 +1,13 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meme Clicker</title>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ===== BODY ===== */
 body {
   margin: 0;
   font-family: 'Luckiest Guy', cursive;
@@ -6,10 +15,35 @@ body {
   text-align: center;
 }
 
-#score {
+/* ===== TOPBAR ===== */
+#topbar {
   position: fixed;
   top: 15px;
   left: 15px;
+  display: flex;
+  gap: 10px;
+  z-index: 100;
+}
+#loginBtn, #logoutBtn {
+  padding: 10px 18px;
+  font-size: 1em;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Luckiest Guy', cursive;
+  box-shadow: 2px 2px #000;
+}
+#loginBtn { background-color: #4CAF50; color: #fff; }
+#loginBtn:hover { background-color: #45a049; }
+#logoutBtn { background-color: #f44336; color: #fff; display: none; }
+#logoutBtn:hover { background-color: #da190b; }
+
+/* ===== SCORE ===== */
+#score {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  left: auto;
   background: #000;
   color: #00ffff;
   padding: 12px 18px;
@@ -17,17 +51,20 @@ body {
   border: 2px solid #00ffff;
   box-shadow: 0 0 20px #00ffff;
   font-size: 1.5em;
+  z-index: 100;
 }
 
+/* ===== TITLE + ME BUTTON ===== */
 #titleContainer {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 20px;
+  align-items: center;
+  gap: 50px;
+  margin-top: 120px;
 }
 
 #title {
-  font-size: 100px; /* 25% bigger */
+  font-size: 100px;
   text-shadow: 3px 3px #000;
 }
 .blue { color: #66ccff; display: block; }
@@ -38,7 +75,6 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
 #meBtn {
   font-size: 2em;
   width: 60px;
@@ -48,24 +84,29 @@ body {
   background-color: #a0ff99;
   cursor: pointer;
 }
-
 #meContainer small { font-size: 0.8em; }
 
+/* ===== GAME + SHOP CONTAINER ===== */
 #container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
-  padding: 20px 60px;
+  gap: 40px;
+  padding: 20px;
+  flex-wrap: wrap;
 }
 
+/* ===== GAME BUTTON ===== */
 #game img {
-  width: 400px;
-  height: 400px;
+  width: 80vmin;
+  max-width: 400px;
+  max-height: 400px;
   cursor: pointer;
   transition: transform 0.1s;
 }
 #game img:active { transform: scale(0.95); }
 
+/* ===== SHOP ===== */
 #shop {
   background: linear-gradient(135deg, #4da6ff, #1a75ff);
   padding: 20px;
@@ -75,7 +116,6 @@ body {
   color: #fff;
   max-height: 70vh;
   overflow-y: auto;
-  margin-top: -30px;
 }
 
 /* Tabs */
@@ -102,6 +142,7 @@ body {
 .shopPanel { display: none; }
 .shopPanel.active { display: block; }
 
+/* Cards */
 .card {
   background: #fff8cc;
   color: #000;
@@ -124,7 +165,7 @@ body {
 .card small { font-style: italic; }
 .bcImage { width: 100%; border-radius: 8px; margin-top: 5px; }
 
-/* ME Popup */
+/* ===== ME POPUP ===== */
 #mePopup {
   display: none;
   position: fixed;
@@ -139,7 +180,6 @@ body {
   box-shadow: 5px 5px #000;
   z-index: 1000;
 }
-
 #meHeader {
   display: flex;
   justify-content: space-between;
@@ -151,7 +191,6 @@ body {
   border-bottom: 2px solid #000;
   border-radius: 12px 12px 0 0;
 }
-
 #meCloseBtn {
   background: #ff6666;
   border: 2px solid #000;
@@ -160,5 +199,119 @@ body {
   height: 30px;
   cursor: pointer;
 }
-
 #meContent { padding: 20px; text-align: left; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  #container { flex-direction: column; align-items: center; gap: 20px; }
+  #title { font-size: 70px; }
+  #game img { width: 60vmin; }
+}
+</style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div id="topbar">
+    <button id="loginBtn">Login / Sign Up</button>
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+  <!-- SCORE -->
+  <div id="score">Aura: 0</div>
+
+  <!-- TITLE + ME -->
+  <div id="titleContainer">
+    <div id="title">
+      <span class="blue">Meme</span>
+      <span class="green">Clicker</span>
+    </div>
+    <div id="meContainer">
+      <button id="meBtn">😊</button>
+      <small>ME</small>
+    </div>
+  </div>
+
+  <!-- GAME + SHOP -->
+  <div id="container">
+    <div id="game">
+      <button id="clickBtn">
+        <img src="https://image2url.com/r2/bucket1/images/1767710530724-0a76fc63-d3f6-4f82-b83d-11e342538afb.webp" alt="Click Me">
+      </button>
+    </div>
+
+    <div id="shop">
+      <div id="shopTabs">
+        <button class="tab active" data-tab="autoClickers">Auto Clickers</button>
+        <button class="tab" data-tab="brainrots">Brainrots</button>
+      </div>
+
+      <!-- AUTO CLICKERS PANEL -->
+      <div class="shopPanel active" id="autoClickers">
+        <div class="card">
+          <button id="sevenBtn">7 Year Old</button>
+          <p>Cost: <span id="sevenCost">1</span></p>
+          <p>Owned: <span id="sevenOwned">0</span></p>
+          <small>+1 aura / 5s</small>
+        </div>
+        <div class="card">
+          <button id="boomerBtn">Cool Boomer</button>
+          <p>Cost: <span id="boomerCost">2</span></p>
+          <p>Owned: <span id="boomerOwned">0</span></p>
+          <small>+1 aura / 3s</small>
+        </div>
+        <div class="card">
+          <button id="genZBtn">Gen Z Nerd</button>
+          <p>Cost: <span id="genZCost">3</span></p>
+          <p>Owned: <span id="genZOwned">0</span></p>
+          <small>±5 aura / 5s</small>
+        </div>
+        <div class="card">
+          <button id="rizzBtn">Fake Rizz God</button>
+          <p>Cost: <span id="rizzCost">50</span></p>
+          <p>Owned: <span id="rizzOwned">0</span></p>
+          <small>+1 aura / sec</small>
+        </div>
+        <div class="card">
+          <button id="skibidiBtn">Skibidi Toilet</button>
+          <p>Cost: <span id="skibidiCost">100</span></p>
+          <p>Owned: <span id="skibidiOwned">0</span></p>
+          <small>+2 aura / sec</small>
+        </div>
+      </div>
+
+      <!-- BRAINROTS PANEL -->
+      <div class="shopPanel" id="brainrots">
+        <div class="card">
+          <button id="brainrotBtn">Brainrot</button>
+          <p>Owned: <span id="brainrotOwned">0</span></p>
+          <small>Base item</small>
+        </div>
+        <div class="card">
+          <button id="bcBtn">Bombardillo Crocodillo</button>
+          <p>Cost: 10000</p>
+          <img src="https://image2url.com/r2/bucket1/images/1767710530724-0a76fc63-d3f6-4f82-b83d-11e342538afb.webp" 
+               alt="Bombardillo Crocodillo" class="bcImage">
+          <small>A Classic. Gives 1.1× Multiplier</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ME POPUP -->
+  <div id="mePopup">
+    <div id="meHeader">
+      <span>My Profile</span>
+      <button id="meCloseBtn">✖</button>
+    </div>
+    <div id="meContent">
+      <p><strong>Account:</strong> <span id="accountInfo">-</span></p>
+      <p><strong>Progress:</strong> <span id="progressInfo">0%</span></p>
+      <p><strong>Worth:</strong> <span id="worthInfo">0</span></p>
+      <p><strong>Aura per 5 sec:</strong> <span id="apsInfo">0</span></p>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
