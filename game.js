@@ -6,33 +6,35 @@ const scoreEl = document.getElementById("score");
 let sevenCount = 0;
 let boomerCount = 0;
 let genZCount = 0;
+let rizzCount = 0;
 let skibidiCount = 0;
-let skibidiCost = 100;
-
 
 // ===== Costs =====
 let sevenCost = 1;
 let boomerCost = 2;
 let genZCost = 3;
+let rizzCost = 50;
+let skibidiCost = 100;
 
 // ===== Buttons =====
 const clickBtn = document.getElementById("clickBtn");
 const sevenBtn = document.getElementById("sevenBtn");
 const boomerBtn = document.getElementById("boomerBtn");
 const genZBtn = document.getElementById("genZBtn");
+const rizzBtn = document.getElementById("rizzBtn");
 const skibidiBtn = document.getElementById("skibidiBtn");
-
 
 // ===== UI =====
 const sevenCostEl = document.getElementById("sevenCost");
 const boomerCostEl = document.getElementById("boomerCost");
 const genZCostEl = document.getElementById("genZCost");
+const rizzCostEl = document.getElementById("rizzCost");
+const skibidiCostEl = document.getElementById("skibidiCost");
 
 const sevenOwnedEl = document.getElementById("sevenOwned");
 const boomerOwnedEl = document.getElementById("boomerOwned");
 const genZOwnedEl = document.getElementById("genZOwned");
-
-const skibidiCostEl = document.getElementById("skibidiCost");
+const rizzOwnedEl = document.getElementById("rizzOwned");
 const skibidiOwnedEl = document.getElementById("skibidiOwned");
 
 // ===== Click Meme =====
@@ -41,7 +43,7 @@ clickBtn.addEventListener("click", () => {
   updateScore();
 });
 
-// ===== Buy upgrades =====
+// ===== Buy Upgrades =====
 sevenBtn.addEventListener("click", () => {
   if (aura >= sevenCost) {
     aura -= sevenCost;
@@ -52,18 +54,6 @@ sevenBtn.addEventListener("click", () => {
     sevenCostEl.textContent = sevenCost;
     updateScore();
   }
-  skibidiBtn.addEventListener("click", () => {
-  if (aura >= skibidiCost) {
-    aura -= skibidiCost;
-    skibidiCount++;
-    skibidiCost = Math.ceil(skibidiCost * 1.25);
-
-    skibidiOwnedEl.textContent = skibidiCount;
-    skibidiCostEl.textContent = skibidiCost;
-    updateScore();
-  }
-});
-
 });
 
 boomerBtn.addEventListener("click", () => {
@@ -90,7 +80,31 @@ genZBtn.addEventListener("click", () => {
   }
 });
 
-// ===== Auto income =====
+rizzBtn.addEventListener("click", () => {
+  if (aura >= rizzCost) {
+    aura -= rizzCost;
+    rizzCount++;
+    rizzCost = Math.ceil(rizzCost * 1.25);
+
+    rizzOwnedEl.textContent = rizzCount;
+    rizzCostEl.textContent = rizzCost;
+    updateScore();
+  }
+});
+
+skibidiBtn.addEventListener("click", () => {
+  if (aura >= skibidiCost) {
+    aura -= skibidiCost;
+    skibidiCount++;
+    skibidiCost = Math.ceil(skibidiCost * 1.25);
+
+    skibidiOwnedEl.textContent = skibidiCount;
+    skibidiCostEl.textContent = skibidiCost;
+    updateScore();
+  }
+});
+
+// ===== Auto Income =====
 setInterval(() => {
   aura += sevenCount;
   updateScore();
@@ -103,21 +117,23 @@ setInterval(() => {
 
 setInterval(() => {
   for (let i = 0; i < genZCount; i++) {
-    if (Math.random() < 0.5) {
-      aura += 5;
-    } else {
-      aura = Math.max(0, aura - 5);
-    }
+    aura += Math.random() < 0.5 ? 5 : -5;
+    if (aura < 0) aura = 0;
   }
   updateScore();
 }, 5000);
 
-// ===== Update UI =====
-function updateScore() {
-  scoreEl.textContent = "Aura: " + aura;
-}
+setInterval(() => {
+  aura += rizzCount * 1;
+  updateScore();
+}, 1000);
+
 setInterval(() => {
   aura += skibidiCount * 2;
   updateScore();
 }, 1000);
 
+// ===== Update UI =====
+function updateScore() {
+  scoreEl.textContent = "Aura: " + aura;
+}
