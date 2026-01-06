@@ -56,7 +56,6 @@ function loadLocal() {
   }
   updateScore();
 }
-loadLocal();
 
 // ===== CLICK BUTTON =====
 clickBtn.addEventListener('click', () => {
@@ -146,7 +145,7 @@ function updateMEPopup() {
   document.getElementById("accountInfo").textContent = user ? user.email : "-";
 }
 
-// ===== LOCAL + FIRESTORE SYNC =====
+// ===== SYNC PROGRESS =====
 async function syncProgress(user) {
   const local = localStorage.getItem('memeClickerProgress');
   const doc = await db.collection('users').doc(user.uid).get();
@@ -163,26 +162,33 @@ async function syncProgress(user) {
   updateScore();
 }
 
+// ===== AUTO SAVE =====
 setInterval(async () => {
   const user = auth.currentUser;
   saveLocal();
   if (user) await db.collection('users').doc(user.uid).set({ progress: { aura, clickMultiplier, upgrades, bcBought } }, { merge: true });
 }, 5000);
 
-// ===== LOGIN / LOGOUT BUTTONS =====
-loginBtn.onclick = () => window.location.href = "login.html";
+// ===== LOGIN / LOGOUT =====
+loginBtn.onclick = () => {
+  // Redirect to external accounts site
+  window.location.href = "https://accounts4monkeymechanics.github.io";
+};
 
 logoutBtn.onclick = async () => {
   await auth.signOut();
   location.reload();
 };
 
+// ===== ON PAGE LOAD: AUTO SYNC USER =====
 auth.onAuthStateChanged(user => {
   if (user) {
     loginBtn.style.display = "none";
     logoutBtn.style.display = "inline-block";
+    syncProgress(user); // automatically load their saved progress
   } else {
     loginBtn.style.display = "inline-block";
     logoutBtn.style.display = "none";
+    loadLocal(); // fallback to localStorage
   }
 });
