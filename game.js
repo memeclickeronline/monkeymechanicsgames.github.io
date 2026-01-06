@@ -140,7 +140,18 @@ meBtn.addEventListener('click', () => {
 meCloseBtn.addEventListener('click', () => mePopup.style.display = "none");
 
 function updateMEPopup() {
-  const totalItems = upgrades.seven.count + upgrades.boomer.count + upgrades.genZ.count + upgrades.rizz.count + upgrades.skibidi.count + (bcBought ? 1 : 0);
+  // Count how many **distinct upgrades you own at least 1 of**
+let ownedCount = 0;
+if (upgrades.seven.count > 0) ownedCount++;
+if (upgrades.boomer.count > 0) ownedCount++;
+if (upgrades.genZ.count > 0) ownedCount++;
+if (upgrades.rizz.count > 0) ownedCount++;
+if (upgrades.skibidi.count > 0) ownedCount++;
+if (bcBought) ownedCount++; // Bombardillo Crocodillo
+
+const totalPossible = 6; // total distinct items in ME
+document.getElementById("progressInfo").textContent = Math.round((ownedCount / totalPossible) * 100) + "%";
+
   const totalPossible = 6;
   document.getElementById("progressInfo").textContent = Math.round(totalItems / totalPossible * 100) + "%";
 
