@@ -255,3 +255,42 @@ tabBtns.forEach(btn => {
     document.getElementById(target).classList.add('active');
     btn.classList.add('active');
   });
+// NAV BAR JS
+const navButtons = document.querySelectorAll("#navBar .navBtn");
+const screens = {
+  play: document.getElementById("game"),
+  shop: document.getElementById("shop"),
+  news: document.getElementById("news") || (() => { 
+    const n = document.createElement('div'); 
+    n.id='news'; 
+    n.textContent='📫 No news yet!'; 
+    n.style.padding='20px'; 
+    n.style.display='none'; 
+    document.body.appendChild(n); 
+    return n; 
+  })(),
+  info: document.getElementById("info") || (() => { 
+    const i = document.createElement('div'); 
+    i.id='info'; 
+    i.textContent="Hey, let's learn how to play the game!";
+    i.style.padding='20px'; 
+    i.style.display='none'; 
+    document.body.appendChild(i); 
+    return i; 
+  })()
+};
+
+navButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    if(btn.classList.contains('locked')) return; // ignore locked
+    navButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // hide all screens
+    Object.values(screens).forEach(s => s.style.display = 'none');
+
+    // show selected screen
+    const screen = btn.getAttribute('data-screen');
+    if(screens[screen]) screens[screen].style.display = 'block';
+  });
+});
