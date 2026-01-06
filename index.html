@@ -48,67 +48,66 @@
     <p>Check here for latest updates!</p>
   </div>
 
-  <!-- SHOP -->
-<div id="shop">
+  <!-- SHOP SCREEN -->
+  <div id="screenShop" class="screen">
+    <div id="shop">
 
-  <!-- TABS -->
-  <div id="shopTabs">
-    <button class="tab active" data-tab="autoClickers">Auto Clickers</button>
-    <button class="tab" data-tab="brainrots">Brainrots</button>
-  </div>
+      <!-- SHOP TABS -->
+      <div id="shopTabs">
+        <button class="tab active" data-tab="autoClickers">Auto Clickers</button>
+        <button class="tab" data-tab="brainrots">Brainrots</button>
+      </div>
 
-  <!-- AUTO CLICKERS PANEL -->
-  <div class="shopPanel active" id="autoClickers">
-    <div class="card">
-      <button id="sevenBtn">7 Year Old</button>
-      <p>Cost: <span id="sevenCost">1</span></p>
-      <p>Owned: <span id="sevenOwned">0</span></p>
-      <small>+1 aura / 5s</small>
-    </div>
-    <div class="card">
-      <button id="boomerBtn">Cool Boomer</button>
-      <p>Cost: <span id="boomerCost">2</span></p>
-      <p>Owned: <span id="boomerOwned">0</span></p>
-      <small>+1 aura / 3s</small>
-    </div>
-    <div class="card">
-      <button id="genZBtn">Gen Z Nerd</button>
-      <p>Cost: <span id="genZCost">3</span></p>
-      <p>Owned: <span id="genZOwned">0</span></p>
-      <small>±5 aura / 5s</small>
-    </div>
-    <div class="card">
-      <button id="rizzBtn">Fake Rizz God</button>
-      <p>Cost: <span id="rizzCost">50</span></p>
-      <p>Owned: <span id="rizzOwned">0</span></p>
-      <small>+1 aura / sec</small>
-    </div>
-    <div class="card">
-      <button id="skibidiBtn">Skibidi Toilet</button>
-      <p>Cost: <span id="skibidiCost">100</span></p>
-      <p>Owned: <span id="skibidiOwned">0</span></p>
-      <small>+2 aura / sec</small>
-    </div>
-  </div>
+      <!-- AUTO CLICKERS PANEL -->
+      <div class="shopPanel active" id="autoClickers">
+        <div class="card">
+          <button id="sevenBtn">7 Year Old</button>
+          <p>Cost: <span id="sevenCost">1</span></p>
+          <p>Owned: <span id="sevenOwned">0</span></p>
+          <small>+1 aura / 5s</small>
+        </div>
+        <div class="card">
+          <button id="boomerBtn">Cool Boomer</button>
+          <p>Cost: <span id="boomerCost">2</span></p>
+          <p>Owned: <span id="boomerOwned">0</span></p>
+          <small>+1 aura / 3s</small>
+        </div>
+        <div class="card">
+          <button id="genZBtn">Gen Z Nerd</button>
+          <p>Cost: <span id="genZCost">3</span></p>
+          <p>Owned: <span id="genZOwned">0</span></p>
+          <small>±5 aura / 5s</small>
+        </div>
+        <div class="card">
+          <button id="rizzBtn">Fake Rizz God</button>
+          <p>Cost: <span id="rizzCost">50</span></p>
+          <p>Owned: <span id="rizzOwned">0</span></p>
+          <small>+1 aura / sec</small>
+        </div>
+        <div class="card">
+          <button id="skibidiBtn">Skibidi Toilet</button>
+          <p>Cost: <span id="skibidiCost">100</span></p>
+          <p>Owned: <span id="skibidiOwned">0</span></p>
+          <small>+2 aura / sec</small>
+        </div>
+      </div>
 
-  <!-- BRAINROTS PANEL -->
-  <div class="shopPanel" id="brainrots">
-    <div class="card">
-      <button id="brainrotBtn">Brainrot</button>
-      <p>Cost: <span id="brainrotCost">67</span></p>
-      <p>Owned: <span id="brainrotOwned">0</span></p>
-      <small>Base item</small>
-    </div>
-    <div class="card">
-      <button id="bcBtn">Bombardillo Crocodillo</button>
-      <p>Cost: <span id="bcCost">10000</span></p>
-      <img src="https://image2url.com/r2/bucket1/images/1767710530724-0a76fc63-d3f6-4f82-b83d-11e342538afb.webp" 
-           alt="Bombardillo Crocodillo" class="bcImage">
-      <small>A classic. Gives 1.1× Multiplier</small>
-    </div>
-  </div>
-
-</div>
+      <!-- BRAINROTS PANEL -->
+      <div class="shopPanel" id="brainrots">
+        <div class="card">
+          <button id="brainrotBtn">Brainrot</button>
+          <p>Cost: <span id="brainrotCost">67</span></p>
+          <p>Owned: <span id="brainrotOwned">0</span></p>
+          <small>Base item</small>
+        </div>
+        <div class="card">
+          <button id="bcBtn">Bombardillo Crocodillo</button>
+          <p>Cost: <span id="bcCost">10000</span></p>
+          <img src="https://image2url.com/r2/bucket1/images/1767710530724-0a76fc63-d3f6-4f82-b83d-11e342538afb.webp" 
+               alt="Bombardillo Crocodillo" class="bcImage">
+          <small>A classic. Gives 1.1× Multiplier</small>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -135,6 +134,15 @@
   </div>
 </div>
 
+<!-- LOGIN POPUP -->
+<div id="loginPopup">
+  <h2>Login / Sign Up</h2>
+  <input type="email" id="loginEmail" placeholder="Email"><br>
+  <input type="password" id="loginPassword" placeholder="Password"><br>
+  <button id="loginSubmit">Login</button>
+  <button id="loginClose">Close</button>
+</div>
+
 <!-- BOTTOM NAV -->
 <div id="bottomBar">
   <div class="tabBtn locked">🔒</div>
@@ -148,36 +156,5 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script src="game.js"></script>
-
-  <!-- LOGIN MODAL -->
-<div id="loginPopup" style="display:none; position:fixed; top:50%; left:50%;
-     transform:translate(-50%,-50%); background:#a0ff99; padding:30px; border:3px solid #000; border-radius:12px; z-index:1000;">
-  <h2>Login / Sign Up</h2>
-  <input type="email" id="loginEmail" placeholder="Email" style="font-family:'Luckiest Guy'; font-size:1em; padding:5px; margin:5px;"><br>
-  <input type="password" id="loginPassword" placeholder="Password" style="font-family:'Luckiest Guy'; font-size:1em; padding:5px; margin:5px;"><br>
-  <button id="loginSubmit" style="font-family:'Luckiest Guy'; padding:5px 10px; margin:5px;">Login</button>
-  <button id="loginClose" style="background:#ff6666; font-family:'Luckiest Guy'; padding:5px 10px; margin:5px;">Close</button>
-</div>
-  // Check if already logged in via localStorage
-const savedUser = localStorage.getItem("loggedInUser");
-if (savedUser) {
-  const userData = JSON.parse(savedUser);
-  loginBtn.style.display = "none";
-  logoutBtn.style.display = "inline-block";
-
-  // Sync progress from Firebase
-  auth.onAuthStateChanged(user => {
-    if (user && user.uid === userData.uid) syncProgress(user);
-  });
-}
-
-// Logout
-logoutBtn.addEventListener("click", async () => {
-  await auth.signOut();
-  localStorage.removeItem("loggedInUser");
-  location.reload();
-});
-
-
 </body>
 </html>
