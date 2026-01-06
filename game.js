@@ -64,8 +64,8 @@ tabs.forEach(tab=>{
 
 // ===== Bombardillo Crocodillo =====
 document.getElementById("bcBtn").onclick = ()=>{
-  if(!bcBought && aura >= 10000){
-    aura -= 10000;
+  if(!bcBought && aura >= 100){
+    aura -= 100;
     bcBought = true;
     clickMultiplier = 1.1;  // multiplier applied to clicks & auto clickers
     const bcBtn = document.getElementById("bcBtn");
