@@ -1,67 +1,74 @@
+// ===== Aura =====
 let aura = 0;
-
 const score = document.getElementById("score");
 
-function update() {
+// ===== Update UI =====
+function updateScore() {
   score.textContent = "Aura: " + aura;
 }
 
 // ===== Click =====
-document.getElementById("clickBtn").onclick = () => {
+document.getElementById("clickBtn").addEventListener("click", () => {
   aura++;
-  update();
-};
+  updateScore();
+});
 
-// ===== Data =====
+// ===== Upgrades =====
 const upgrades = {
-  seven: { count: 0, cost: 1, rate: () => aura += upgrades.seven.count },
-  boomer: { count: 0, cost: 2, rate: () => aura += upgrades.boomer.count },
-  genZ: {
-    count: 0,
-    cost: 3,
-    rate: () => {
-      for (let i = 0; i < upgrades.genZ.count; i++) {
-        aura += Math.random() < 0.5 ? 5 : -5;
-        if (aura < 0) aura = 0;
-      }
-    }
-  },
-  rizz: { count: 0, cost: 50, rate: () => aura += upgrades.rizz.count },
-  skibidi: { count: 0, cost: 100, rate: () => aura += upgrades.skibidi.count * 2 }
+  seven: { count: 0, cost: 1 },
+  boomer: { count: 0, cost: 2 },
+  genZ: { count: 0, cost: 3 },
+  rizz: { count: 0, cost: 50 },
+  skibidi: { count: 0, cost: 100 }
 };
 
-// ===== Buy Functions =====
-function buy(id, costEl, ownedEl) {
-  const up = upgrades[id];
+// ===== Buy Function =====
+function buyUpgrade(name) {
+  const up = upgrades[name];
   if (aura >= up.cost) {
     aura -= up.cost;
     up.count++;
     up.cost = Math.ceil(up.cost * 1.25);
-    costEl.textContent = up.cost;
-    ownedEl.textContent = up.count;
-    update();
+
+    document.getElementById(name + "Cost").textContent = up.cost;
+    document.getElementById(name + "Owned").textContent = up.count;
+
+    updateScore();
   }
 }
 
-// ===== Button Bindings =====
-document.getElementById("sevenBtn").onclick =
-  () => buy("seven", sevenCost, sevenOwned);
+// ===== Buttons =====
+document.getElementById("sevenBtn").onclick   = () => buyUpgrade("seven");
+document.getElementById("boomerBtn").onclick  = () => buyUpgrade("boomer");
+document.getElementById("genZBtn").onclick    = () => buyUpgrade("genZ");
+document.getElementById("rizzBtn").onclick    = () => buyUpgrade("rizz");
+document.getElementById("skibidiBtn").onclick = () => buyUpgrade("skibidi");
 
-document.getElementById("boomerBtn").onclick =
-  () => buy("boomer", boomerCost, boomerOwned);
+// ===== Auto Income =====
+setInterval(() => {
+  aura += upgrades.seven.count;
+  updateScore();
+}, 5000);
 
-document.getElementById("genZBtn").onclick =
-  () => buy("genZ", genZCost, genZOwned);
+setInterval(() => {
+  aura += upgrades.boomer.count;
+  updateScore();
+}, 3000);
 
-document.getElementById("rizzBtn").onclick =
-  () => buy("rizz", rizzCost, rizzOwned);
+setInterval(() => {
+  for (let i = 0; i < upgrades.genZ.count; i++) {
+    aura += Math.random() < 0.5 ? 5 : -5;
+    if (aura < 0) aura = 0;
+  }
+  updateScore();
+}, 5000);
 
-document.getElementById("skibidiBtn").onclick =
-  () => buy("skibidi", skibidiCost, skibidiOwned);
+setInterval(() => {
+  aura += upgrades.rizz.count;
+  updateScore();
+}, 1000);
 
-// ===== Timers =====
-setInterval(() => { upgrades.seven.rate(); update(); }, 5000);
-setInterval(() => { upgrades.boomer.rate(); update(); }, 3000);
-setInterval(() => { upgrades.genZ.rate(); update(); }, 5000);
-setInterval(() => { upgrades.rizz.rate(); update(); }, 1000);
-setInterval(() => { upgrades.skibidi.rate(); update(); }, 1000);
+setInterval(() => {
+  aura += upgrades.skibidi.count * 2;
+  updateScore();
+}, 1000);
