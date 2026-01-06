@@ -182,11 +182,34 @@ setInterval(async () => {
 
 // ===== LOGIN / LOGOUT =====
 
-// Login button - top-left, redirect safe
-loginBtn.addEventListener("click", (e) => {
-  e.preventDefault(); // prevent default behavior
-  window.location.href = "https://accounts4monkeymechanics.github.io";
+// Example login function (replace loginBtn click)
+loginBtn.addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  const email = prompt("Enter your email:");
+  const password = prompt("Enter your password:");
+
+  try {
+    const userCredential = await auth.signInWithEmailAndPassword(email, password);
+    const user = userCredential.user;
+
+    if (!user.emailVerified) {
+      await user.sendEmailVerification();
+      alert("Email not verified! A verification link has been sent to your inbox. Check your email and login again.");
+      await auth.signOut(); // prevent login until verified
+    } else {
+      alert("Logged in successfully!");
+      // Continue with your game logic, e.g., syncProgress(user)
+      syncProgress(user);
+      loginBtn.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+    }
+
+  } catch (err) {
+    alert(err.message);
+  }
 });
+
 
 // Logout button
 logoutBtn.addEventListener("click", async () => {
