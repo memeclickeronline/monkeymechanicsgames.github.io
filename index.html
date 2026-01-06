@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- Aura -->
+  <!-- Aura Counter -->
   <div id="score">Aura: 0</div>
 
   <!-- Title -->
@@ -17,17 +17,17 @@
     <span class="green">Clicker</span>
   </div>
 
-  <!-- Main container -->
+  <!-- Main Container -->
   <div id="container">
 
-    <!-- Game Area -->
+    <!-- Game Section -->
     <div id="game">
       <button id="clickBtn">
-        <img src="https://image2url.com/r2/bucket2/images/1767609683239-18bb92ac-314c-40c8-a730-356e9d2fcb74.webp" alt="Big Meme">
+        <img src="https://image2url.com/r2/bucket2/images/1767609683239-18bb92ac-314c-40c8-a730-356e9d2fcb74.webp" alt="Click Me">
       </button>
     </div>
 
-    <!-- Shop Area -->
+    <!-- Shop Section -->
     <div id="shop">
 
       <!-- Tabs -->
@@ -44,24 +44,28 @@
           <p>Owned: <span id="sevenOwned">0</span></p>
           <small>+1 aura / 5s</small>
         </div>
+
         <div class="card">
           <button id="boomerBtn">Cool Boomer</button>
           <p>Cost: <span id="boomerCost">2</span></p>
           <p>Owned: <span id="boomerOwned">0</span></p>
           <small>+1 aura / 3s</small>
         </div>
+
         <div class="card">
           <button id="genZBtn">Gen Z Nerd</button>
           <p>Cost: <span id="genZCost">3</span></p>
           <p>Owned: <span id="genZOwned">0</span></p>
           <small>±5 aura / 5s</small>
         </div>
+
         <div class="card">
           <button id="rizzBtn">Fake Rizz God</button>
           <p>Cost: <span id="rizzCost">50</span></p>
           <p>Owned: <span id="rizzOwned">0</span></p>
           <small>+1 aura / sec</small>
         </div>
+
         <div class="card">
           <button id="skibidiBtn">Skibidi Toilet</button>
           <p>Cost: <span id="skibidiCost">100</span></p>
@@ -77,17 +81,18 @@
           <p>Owned: <span id="brainrotOwned">67</span></p>
           <small>Base item</small>
         </div>
-   <div class="card">
-  <button id="bcBtn">Bombardillo Crocodillo</button>
-  <p>Cost: <span id="bcCost">10000</span></p>
-  <img src="BC.jpeg" alt="Bombardillo Crocodillo" style="width:100%; border-radius:8px; margin-top:5px;">
-  <small>A Classic. Gives 1.1x multiplier.</small>
-</div>
 
+        <div class="card">
+          <button id="bcBtn">Bombardillo Crocodillo</button>
+          <p>Cost: 10000</p>
+          <img src="BC.jpeg" alt="Bombardillo Crocodillo" class="bcImage">
+          <small>A Classic. Gives 1.1× Multiplier</small>
+        </div>
       </div>
 
-    </div> <!-- shop end -->
-  </div> <!-- container end -->
+    </div>
+
+  </div>
 
   <script src="game.js"></script>
 </body>
