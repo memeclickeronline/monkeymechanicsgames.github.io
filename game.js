@@ -163,9 +163,46 @@ tabBtns.forEach(btn => {
 
 // ===== LOGIN / LOGOUT =====
 loginBtn.addEventListener("click", async () => {
-  const email = prompt("Enter your email:");
-  const password = prompt("Enter your password:");
+  const email = // Show login modal
+loginBtn.addEventListener("click", () => {
+  document.getElementById("loginPopup").style.display = "block";
+});
+
+// Close modal
+document.getElementById("loginClose").addEventListener("click", () => {
+  document.getElementById("loginPopup").style.display = "none";
+});
+
+// Handle login
+document.getElementById("loginSubmit").addEventListener("click", async () => {
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+
   try {
+    const userCredential = await auth.signInWithEmailAndPassword(email, password);
+    const user = userCredential.user;
+
+    if (!user.emailVerified) {
+      await user.sendEmailVerification();
+      alert("Email not verified! Check your inbox.");
+      await auth.signOut();
+    } else {
+      // Save in localStorage so login persists
+      localStorage.setItem("loggedInUser", JSON.stringify({ uid: user.uid, email: user.email }));
+      alert("Logged in successfully!");
+      syncProgress(user);
+      loginBtn.style.display = "none";
+      logoutBtn.style.display = "inline-block";
+      document.getElementById("loginPopup").style.display = "none";
+
+      // Redirect to accounts site
+      window.location.href = "https://accounts.monkeymechanics.github.io";
+    }
+  } catch (err) {
+    alert(err.message);
+  }
+});
+{
     const userCredential = await auth.signInWithEmailAndPassword(email, password);
     const user = userCredential.user;
     if (!user.emailVerified) {
