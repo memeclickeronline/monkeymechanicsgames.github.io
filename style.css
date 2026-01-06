@@ -1,3 +1,4 @@
+/* ===== GLOBAL ===== */
 body {
   margin: 0;
   font-family: 'Luckiest Guy', cursive;
@@ -5,7 +6,7 @@ body {
   text-align: center;
 }
 
-/* Topbar with login/logout */
+/* ===== TOPBAR ===== */
 #topbar {
   position: fixed;
   top: 10px;
@@ -28,7 +29,7 @@ body {
 #logoutBtn { background-color: #f44336; color: #fff; display: none; }
 #logoutBtn:hover { background-color: #da190b; }
 
-/* Score */
+/* ===== SCORE ===== */
 #score {
   position: fixed;
   top: 10px;
@@ -42,7 +43,7 @@ body {
   font-size: 1.5em;
 }
 
-/* Title */
+/* ===== TITLE ===== */
 #titleContainer {
   display: flex;
   justify-content: center;
@@ -54,7 +55,7 @@ body {
 .blue { color: #66ccff; display: block; }
 .green { color: #00ff00; display: block; margin-top: -15px; }
 
-/* ME Button */
+/* ===== ME BUTTON ===== */
 #meContainer {
   display: flex;
   flex-direction: column;
@@ -71,7 +72,7 @@ body {
 }
 #meContainer small { font-size: 0.8em; }
 
-/* Game Button */
+/* ===== GAME BUTTON ===== */
 #game img {
   width: 400px;
   height: 400px;
@@ -80,7 +81,7 @@ body {
 }
 #game img:active { transform: scale(0.95); }
 
-/* Shop */
+/* ===== SHOP ===== */
 #shop {
   background: linear-gradient(135deg, #4da6ff, #1a75ff);
   padding: 20px;
@@ -90,7 +91,7 @@ body {
   color: #fff;
   max-height: 70vh;
   overflow-y: auto;
-  margin-top: -30px;
+  margin: 20px auto;
 }
 
 /* Shop Tabs */
@@ -122,6 +123,7 @@ body {
   padding: 12px;
   margin-bottom: 15px;
   box-shadow: 3px 3px #000;
+  text-align: center;
 }
 .card button {
   font-family: 'Luckiest Guy', cursive;
@@ -136,7 +138,7 @@ body {
 .card small { font-style: italic; }
 .bcImage { width: 100%; border-radius: 8px; margin-top: 5px; }
 
-/* ME Popup */
+/* ===== ME POPUP ===== */
 #mePopup {
   display: none;
   position: fixed;
@@ -172,57 +174,32 @@ body {
 }
 #meContent { padding: 20px; text-align: left; }
 
-/* Bottom Nav Bar */
-#bottomBar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  background: #222;
-  color: #fff;
-  padding: 10px 0;
-  font-size: 1.5em;
-  box-shadow: 0 -2px 5px #000;
-}
-#bottomBar .tabBtn {
-  cursor: pointer;
-  flex: 1;
-}
-#bottomBar .tabBtn.active {
-  font-size: 2em;
-}
-#bottomBar .tabBtn.locked {
-  opacity: 0.5;
-  cursor: default;
-}
 /* ===== BOTTOM NAV BAR ===== */
 #bottomBar {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to top, #7b3f00, #a0522d); /* wooden gradient */
+  background: linear-gradient(to top, #7b3f00, #a0522d);
   box-shadow: 0 -3px 10px rgba(0,0,0,0.5);
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 10px 0;
   z-index: 100;
-  border-top: 3px solid #3e1f00; /* darker top edge for 3D effect */
+  border-top: 3px solid #3e1f00;
 }
 
 #bottomBar .tabBtn {
-  font-size: 1.8em; /* bigger icons */
-  width: 60px;
-  height: 60px;
+  font-size: 2em;
+  width: 70px;
+  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #deb887; /* light wooden-ish color */
+  background: #deb887;
   border-radius: 12px;
-  border: 2px solid #3e1f00; /* darker outline */
+  border: 2px solid #3e1f00;
   cursor: pointer;
   box-shadow: 2px 2px #000;
   transition: transform 0.1s, background 0.2s;
@@ -230,7 +207,7 @@ body {
 
 #bottomBar .tabBtn.active {
   transform: translateY(-5px);
-  background: #f4a460; /* highlight active tab */
+  background: #f4a460;
   box-shadow: 3px 3px #000;
 }
 
@@ -243,3 +220,7 @@ body {
   background: #d2a679;
   transform: translateY(-3px);
 }
+
+/* ===== SCREENS ===== */
+.screen { display: none; }
+.screen.active { display: block; }
