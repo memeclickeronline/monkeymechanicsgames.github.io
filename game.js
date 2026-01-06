@@ -154,4 +154,7 @@ async function onUserLogin(user) {
     }, { merge: true });
   }
 }
+document.getElementById("loginBtn").onclick = () => {
+  window.location.href = "https://accounts.monkeymechanics.github.io";
+};
 
