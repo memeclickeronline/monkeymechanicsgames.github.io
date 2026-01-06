@@ -80,38 +80,42 @@
   }
   #meContainer small { font-size: 0.8em; }
 
-  /* Game button */
-  #clickBtn img { width: 400px; height: 400px; cursor: pointer; transition: transform 0.1s; }
-  #clickBtn img:active { transform: scale(0.95); }
+ <!-- SCREENS -->
+<div id="screens">
+  <div id="screenPlay" class="screen active">
+    <!-- Main game button and score go here -->
+    <div id="game">
+      <button id="clickBtn">
+        <img src="https://image2url.com/r2/bucket1/images/1767710530724-0a76fc63-d3f6-4f82-b83d-11e342538afb.webp" alt="Click Me">
+      </button>
+    </div>
+    <div id="score">Aura: 0</div>
+  </div>
 
-  /* Shop */
-  #shop {
-    background: linear-gradient(135deg, #4da6ff, #1a75ff);
-    padding: 20px;
-    width: 300px;
-    border-radius: 15px;
-    box-shadow: 4px 4px #000;
-    color: #fff;
-    max-height: 70vh;
-    overflow-y: auto;
-    margin-top: -30px;
-  }
-  #shopTabs { display: flex; justify-content: space-around; margin-bottom: 15px; }
-  #shopTabs .tab {
-    flex: 1;
-    padding: 10px 0;
-    cursor: pointer;
-    font-family: 'Luckiest Guy', cursive;
-    background: #ffcc00;
-    border: 2px solid #000;
-    border-radius: 8px;
-    margin: 0 5px;
-    transition: 0.2s;
-  }
-  #shopTabs .tab:hover { background: #ffee66; }
-  #shopTabs .tab.active { background: #ffff00; box-shadow: 2px 2px #000; }
-  .shopPanel { display: none; }
-  .shopPanel.active { display: block; }
+  <div id="screenNews" class="screen">
+    <h2>📫 News</h2>
+    <p>Check here for latest updates!</p>
+  </div>
+
+  <div id="screenShop" class="screen">
+    <!-- Paste your old shop div here -->
+  </div>
+
+  <div id="screenInfo" class="screen">
+    <h2>❓ How to Play</h2>
+    <p>Hey! Let’s learn how to play the game!</p>
+  </div>
+</div>
+
+<!-- BOTTOM NAV BAR -->
+<div id="bottomBar">
+  <div class="tabBtn locked">🔒</div>
+  <div class="tabBtn" data-target="screenNews">📫</div>
+  <div class="tabBtn active" data-target="screenPlay">🕹️</div>
+  <div class="tabBtn" data-target="screenShop">🛒</div>
+  <div class="tabBtn" data-target="screenInfo">❓</div>
+</div>
+
 
   .card {
     background: #fff8cc;
