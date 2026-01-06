@@ -170,22 +170,25 @@ setInterval(async () => {
 }, 5000);
 
 // ===== LOGIN / LOGOUT =====
-loginBtn.onclick = () => {
-  // Redirect to external accounts site
-  window.location.href = "https://accounts4monkeymechanics.github.io";
-};
 
-logoutBtn.onclick = async () => {
+// Login button - top-left, redirect safe
+loginBtn.addEventListener("click", (e) => {
+  e.preventDefault(); // prevent default behavior
+  window.location.href = "https://accounts4monkeymechanics.github.io";
+});
+
+// Logout button
+logoutBtn.addEventListener("click", async () => {
   await auth.signOut();
   location.reload();
-};
+});
 
-// ===== ON PAGE LOAD: AUTO SYNC USER =====
+// ===== AUTO SYNC ON PAGE LOAD =====
 auth.onAuthStateChanged(user => {
   if (user) {
     loginBtn.style.display = "none";
     logoutBtn.style.display = "inline-block";
-    syncProgress(user); // automatically load their saved progress
+    syncProgress(user); // auto-load their progress
   } else {
     loginBtn.style.display = "inline-block";
     logoutBtn.style.display = "none";
