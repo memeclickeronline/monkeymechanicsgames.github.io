@@ -72,3 +72,23 @@ setInterval(() => {
   aura += upgrades.skibidi.count * 2;
   updateScore();
 }, 1000);
+// ===== Tab Switching =====
+const tabs = document.querySelectorAll("#shopTabs .tab");
+const panels = document.querySelectorAll(".shopPanel");
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    // Remove active class from all tabs
+    tabs.forEach(t => t.classList.remove("active"));
+    // Hide all panels
+    panels.forEach(p => p.classList.remove("active"));
+
+    // Activate clicked tab and corresponding panel
+    tab.classList.add("active");
+    const panelId = tab.getAttribute("data-tab");
+    document.getElementById(panelId).classList.add("active");
+  });
+});
+
+// Set Auto Clickers as default panel
+document.getElementById("autoClickers").classList.add("active");
