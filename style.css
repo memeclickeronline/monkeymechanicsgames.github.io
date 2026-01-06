@@ -5,7 +5,6 @@ body {
   text-align: center;
 }
 
-/* Aura box */
 #score {
   position: fixed;
   top: 15px;
@@ -19,7 +18,6 @@ body {
   font-size: 1.5em;
 }
 
-/* Title */
 #title {
   font-size: 80px;
   margin: 60px 0 30px;
@@ -28,28 +26,22 @@ body {
 .blue { color: #66ccff; display: block; }
 .green { color: #00ff00; display: block; margin-top: -15px; }
 
-/* Main container */
 #container {
   display: flex;
-  justify-content: space-between; /* game left, shop right */
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 80px;
   padding: 20px 60px;
-  flex-wrap: wrap;
 }
 
-/* Game image */
 #game img {
   width: 400px;
   height: 400px;
   cursor: pointer;
   transition: transform 0.1s;
 }
-#game img:active {
-  transform: scale(0.95);
-}
 
-/* Shop panel */
+#game img:active { transform: scale(0.95); }
+
 #shop {
   background: linear-gradient(135deg, #4da6ff, #1a75ff);
   padding: 20px;
@@ -59,15 +51,16 @@ body {
   color: #fff;
   max-height: 70vh;
   overflow-y: auto;
-  margin-top: -30px;  /* higher */
+  margin-top: -30px;
 }
 
-/* Shop tabs */
+/* Tabs */
 #shopTabs {
   display: flex;
   justify-content: space-around;
   margin-bottom: 15px;
 }
+
 #shopTabs .tab {
   flex: 1;
   padding: 10px 0;
@@ -77,7 +70,7 @@ body {
   border: 2px solid #000;
   border-radius: 8px;
   margin: 0 5px;
-  transition: transform 0.1s, background 0.2s;
+  transition: 0.2s;
 }
 #shopTabs .tab:hover { background: #ffee66; }
 #shopTabs .tab.active { background: #ffff00; box-shadow: 2px 2px #000; }
@@ -86,7 +79,6 @@ body {
 .shopPanel { display: none; }
 .shopPanel.active { display: block; }
 
-/* Upgrade cards */
 .card {
   background: #fff8cc;
   color: #000;
@@ -107,3 +99,9 @@ body {
 }
 .card p { margin: 5px 0; }
 .card small { font-style: italic; }
+
+.bcImage {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 5px;
+}
