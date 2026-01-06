@@ -346,6 +346,44 @@ body {
   opacity: 0.4;
   cursor: default;
 }
+/* NAV BAR STYLES */
+#navBar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  background: #222;
+  border-top: 2px solid #000;
+  padding: 5px;
+  border-radius: 12px 12px 0 0;
+  z-index: 1000;
+}
+
+.navBtn {
+  font-size: 1.8em;
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 0;
+  cursor: pointer;
+  flex: 1;
+  transition: 0.2s;
+}
+
+.navBtn.active {
+  background: #ffcc00;
+  color: #000;
+  font-size: 2em; /* highlight main/play button */
+}
+
+.navBtn.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 
 </body>
 </html>
