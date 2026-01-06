@@ -156,6 +156,26 @@
   <button id="loginSubmit" style="font-family:'Luckiest Guy'; padding:5px 10px; margin:5px;">Login</button>
   <button id="loginClose" style="background:#ff6666; font-family:'Luckiest Guy'; padding:5px 10px; margin:5px;">Close</button>
 </div>
+  // Check if already logged in via localStorage
+const savedUser = localStorage.getItem("loggedInUser");
+if (savedUser) {
+  const userData = JSON.parse(savedUser);
+  loginBtn.style.display = "none";
+  logoutBtn.style.display = "inline-block";
+
+  // Sync progress from Firebase
+  auth.onAuthStateChanged(user => {
+    if (user && user.uid === userData.uid) syncProgress(user);
+  });
+}
+
+// Logout
+logoutBtn.addEventListener("click", async () => {
+  await auth.signOut();
+  localStorage.removeItem("loggedInUser");
+  location.reload();
+});
+
 
 </body>
 </html>
