@@ -162,10 +162,21 @@ meCloseBtn.addEventListener('click', () => mePopup.style.display = "none");
 
 function updateMEPopup() {
   let ownedCount = 0;
-  for (const key in upgrades) if (upgrades[key].count > 0) ownedCount++;
+  let totalPossible = 0;
+
+  // Upgrades (7yo, boomer, genZ, rizz, skibidi)
+  for (const key in upgrades) {
+    totalPossible++;
+    if (upgrades[key].count > 0) ownedCount++;
+  }
+
+  // Brainrot items
+  totalPossible++; // Bombardillo Crocodillo
   if (bcBought) ownedCount++;
-  const totalPossible = 6;
-  document.getElementById("progressInfo").textContent = Math.round((ownedCount / totalPossible) * 100) + "%";
+
+  document.getElementById("progressInfo").textContent =
+    Math.round((ownedCount / totalPossible) * 100) + "%";
+
 
   let worth = 0;
   for (const key in upgrades) worth += upgrades[key].count * upgrades[key].cost;
