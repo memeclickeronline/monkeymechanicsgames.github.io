@@ -186,14 +186,28 @@ meBtn.addEventListener('click', () => { mePopup.style.display = "block"; updateM
 meCloseBtn.addEventListener('click', () => mePopup.style.display = "none");
 
 function updateMEPopup() {
+  // Count how many upgrades are owned
   let ownedCount = 0;
-  let totalPossible = 0;
+  for (const key in upgrades) if (upgrades[key].count > 0) ownedCount++;
+  if (bcBought) ownedCount++;
 
-  // Upgrades (7yo, boomer, genZ, rizz, skibidi)
-  for (const key in upgrades) {
-    totalPossible++;
-    if (upgrades[key].count > 0) ownedCount++;
-  }
+  const totalPossible = 6; // all upgrades + brainrot
+  document.getElementById("progressInfo").textContent = Math.round((ownedCount / totalPossible) * 100) + "%";
+
+  // Calculate worth
+  let worth = 0;
+  for (const key in upgrades) worth += upgrades[key].count * upgrades[key].cost;
+  if (bcBought) worth += 10000;
+  document.getElementById("worthInfo").textContent = Math.round((worth + aura) * 100)/100;
+
+  // Calculate aura per 5s
+  const aura5s = upgrades.seven.count + upgrades.boomer.count * (5/3) + upgrades.genZ.count * 5 + upgrades.rizz.count * 5 + upgrades.skibidi.count * 10;
+  document.getElementById("apsInfo").textContent = Math.round(aura5s * 100)/100;
+
+  // Show account info if logged in
+  const user = auth.currentUser;
+  document.getElementById("accountInfo").textContent = user ? user.email : "-";
+}
 
   // Brainrot items
   totalPossible++; // Bombardillo Crocodillo
@@ -275,3 +289,6 @@ auth.onAuthStateChanged(user => {
   if(user){ loginBtn.style.display="none"; logoutBtn.style.display="inline-block"; } 
   else { loginBtn.style.display="inline-block"; logoutBtn.style.display="none"; loadLocal(); }
 });
+// Update ME popup immediately on page load
+updateMEPopup();
+
