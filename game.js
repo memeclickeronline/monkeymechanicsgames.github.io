@@ -57,6 +57,28 @@ function loadLocal() {
       if (data.upgrades && data.upgrades[key]) upgrades[key] = data.upgrades[key];
     }
   }
+
+  updateScore();
+
+  // Update owned counters and costs in the shop
+  for (const key in upgrades) {
+    const card = document.getElementById(key + "Btn").closest('.card');
+    card.querySelector("span[id$='Owned']").textContent = upgrades[key].count;
+    card.querySelector("span[id$='Cost']").textContent = upgrades[key].cost;
+
+    // Also preload descriptions
+    const descEl = card.querySelector('small');
+    descEl.textContent = descriptions[key];
+  }
+
+  // Bombardillo Crocodillo button state
+  const bcBtn = document.getElementById("bcBtn");
+  if (bcBought) {
+    bcBtn.disabled = true;
+    bcBtn.textContent = "Bombardillo Crocodillo (Bought)";
+  }
+}
+
   updateScore();
 }
 
